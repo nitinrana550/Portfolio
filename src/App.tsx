@@ -195,9 +195,9 @@ function ServicesSection() {
 
 function SelectedWork({ className }: { className?: string }) {
   const works = [
-    { name: "Neo-Kinetic Store", type: "E-Commerce", year: "2024" },
-    { name: "Aura Aesthetics", type: "Shopify", year: "2023" },
-    { name: "Studio Minimal", type: "Webflow", year: "2024" }
+    { name: "Rose Land", type: "E-Commerce", year: "2026", url: "https://roselandusa.com/" },
+    { name: "Espravo", type: "Shopify", year: "2025", url: "https://espravo.com/" },
+    { name: "Bike Evolution", type: "Webflow", year: "2024", url: "https://bikeevolution.com/" }
   ];
 
   return (
@@ -222,7 +222,15 @@ function SelectedWork({ className }: { className?: string }) {
                <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-widest font-mono">{work.type} / {work.year}</p>
              </div>
              <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#00FF00] group-hover:bg-[#00FF00] group-hover:text-black transition-all">
-               <ArrowUpRight size={18} />
+              
+                 <a
+   href={work.url}
+ target="_blank"
+ rel="noopener noreferrer"
+    className="flex items-center justify-center w-full h-full"
+  >
+  <ArrowUpRight size={18} />
+ </a>
              </div>
            </div>
          ))}
