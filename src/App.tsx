@@ -253,14 +253,30 @@ function CtaSection({ className }: { className?: string }) {
     const data = new FormData(form);
     
     try {
-      // Form submission simulation (to configure Web3Forms or Formspree plug their URL into fetch)
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setStatus('success');
-      form.reset();
-    } catch (error) {
-      setStatus('error');
-    }
+  const response = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      access_key: "a4efd693-8394-469a-80b3-cc88a34f2c8a", 
+      name: data.get("name"),
+      email: data.get("email"),
+      message: data.get("message"),
+    }),
+  });
+
+  const result = await response.json();
+
+  if (!result.success) {
+    throw new Error(result.message || "Failed to send");
+  }
+
+  setStatus('success');
+  form.reset();
+} catch (error) {
+  setStatus('error');
+}
   };
 
   return (
